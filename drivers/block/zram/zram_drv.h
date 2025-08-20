@@ -23,8 +23,6 @@
 #include "zcomp.h"
 #include "zram_dedup.h"
 
-/* 添加 ZSTD 默认压缩等级 */
-#define ZRAM_ZSTD_DEFAULT_LEVEL 19
 #define SECTORS_PER_PAGE_SHIFT	(PAGE_SHIFT - SECTOR_SHIFT)
 #define SECTORS_PER_PAGE	(1 << SECTORS_PER_PAGE_SHIFT)
 #define ZRAM_LOGICAL_BLOCK_SHIFT 12
