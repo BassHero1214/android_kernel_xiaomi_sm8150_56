@@ -2156,7 +2156,7 @@ static int aw8697_haptic_f0_calibration(struct aw8697 *aw8697)
 			f0_limit = aw8697->info.f0_pre;
 		}
 		if (aw8697->f0 * 100 >
-		    aw8697->info.f0_pre * (100 + aw8697->info.f0_cali_percen)) {
+		    aw8697->info。f0_pre * (100 + aw8697->info.f0_cali_percen)) {
 			f0_limit = aw8697->info.f0_pre;
 		}
 
@@ -2636,7 +2636,7 @@ static irqreturn_t aw8697_irq(int irq, void *data)
 	unsigned char reg_val = 0;
 	unsigned char dbg_val = 0;
 	unsigned int buf_len = 0;
-	unsigned period_size =  aw8697->ram.base_addr >> 2;
+	unsigned period_size =  aw8697->ram。base_addr >> 2;
 
 	atomic_set(&aw8697->is_in_rtp_loop, 1);
 	aw8697_i2c_read(aw8697, AW8697_REG_SYSINT, &reg_val);
@@ -2677,7 +2677,7 @@ static irqreturn_t aw8697_irq(int irq, void *data)
 					aw8697_i2c_writes(aw8697, AW8697_REG_RTP_DATA,
 						aw8697_rtp->data, buf_len);
 					if (buf_len < period_size) {
-						pr_info("%s: rtp update complete\n",
+						pr_info("%s: rtp update complete\n"，
 							__func__);
 						aw8697_haptic_set_rtp_aei(aw8697,
 									  false);
@@ -2941,8 +2941,8 @@ static int aw8697_parse_dt(struct device *dev, struct aw8697 *aw8697,
 			printk("%s Read qcom,wf-pattern property failed !\n",
 			       __func__);
 		}
-		printk("%s %d  effect->pattern_length=%d  effect->pattern=%d \n", __func__, __LINE__,
-			effect->pattern_length, (int)effect->pattern);
+		printk("%s %d effect->pattern_length=%d effect->pattern=%p\n"， 
+       __func__, __LINE__, effect->pattern_length, effect->pattern);
 
 		effect->play_rate_us = config->play_rate_us;
 		rc = of_property_read_u32(child_node, "qcom,wf-play-rate-us",
@@ -3037,25 +3037,25 @@ static int aw8697_parse_dt(struct device *dev, struct aw8697 *aw8697,
 	printk(" 20190420_dt       aw8697->effect_id_boundary: %d\n",
 	       aw8697->info.effect_id_boundary);
 	printk(" 20190420_dt       aw8697->effect_max: %d\n",
-	       aw8697->info.effect_max);
+	       aw8697->info。effect_max);
 	printk(" 20190420_dt       aw8697->info.cont_drv_lvl: %d\n",
-		   aw8697->info.cont_drv_lvl);
+		   aw8697->info。cont_drv_lvl);
 	printk(" 20190420_dt       aw8697->info.cont_drv_lvl_ov: %d\n",
-		   aw8697->info.cont_drv_lvl_ov);
+		   aw8697->info。cont_drv_lvl_ov);
 	for (i = 0; i < 3; i++)
 		for (j = 0; j < 5; j++)
 			printk(" 20190420_dt       aw8697->info.trig_config[%d][%d]: %d\n",
-				i, j, aw8697->info.trig_config[i][j]);
+				i, j, aw8697->info。trig_config[i][j]);
 	for (i = 0; i < 175; i++)
 		printk(" 20190420_dt       aw8697->info.rtp_time[%d]: %d\n",
-		   i, aw8697->info.rtp_time[i]);
+		   i, aw8697->info。rtp_time[i]);
 
 	printk(" 20190420_dt       aw8697->info.bst_vol_default: 0x%x\n",
-	       aw8697->info.bst_vol_default);
+	       aw8697->info。bst_vol_default);
 	printk(" 20190420_dt       aw8697->info.bst_vol_ram: 0x%x\n",
-	       aw8697->info.bst_vol_ram);
+	       aw8697->info。bst_vol_ram);
 	printk(" 20190420_dt       aw8697->info.bst_vol_rtp: 0x%x\n",
-	       aw8697->info.bst_vol_rtp);
+	       aw8697->info。bst_vol_rtp);
 	return 0;
 }
 
@@ -3098,13 +3098,13 @@ static int aw8697_haptics_upload_effect(struct input_dev *dev,
 		usleep_range(time_us, time_us + 100);
 	}
 	pr_debug("%s: effect->type=0x%x,FF_CONSTANT=0x%x,FF_PERIODIC=0x%x\n",
-		__func__, effect->type, FF_CONSTANT, FF_PERIODIC);
-	aw8697->effect_type = effect->type;
+		__func__, effect->输入, FF_CONSTANT, FF_PERIODIC);
+	aw8697->effect_type = effect->输入;
 	 mutex_lock(&aw8697->lock);
 	 while (atomic_read(&aw8697->exit_in_rtp_loop)) {
 		 pr_info("%s  goint to waiting rtp  exit\n", __func__);
 		 mutex_unlock(&aw8697->lock);
-		 ret = wait_event_interruptible(aw8697->stop_wait_q, atomic_read(&aw8697->exit_in_rtp_loop) == 0);
+		 ret = wait_event_interruptible(aw8697->stop_wait_q， atomic_read(&aw8697->exit_in_rtp_loop) == 0);
 		 pr_info("%s  wakeup \n", __func__);
 		 if (ret == -ERESTARTSYS) {
 			 mutex_unlock(&aw8697->lock);
@@ -3316,7 +3316,7 @@ static ssize_t aw8697_activate_test_store(struct device *dev,
 		aw8697_haptic_set_wav_seq(aw8697, 0x01, 0x01);
 
 		/*step 1:  choose  loop */
-		aw8697_haptic_set_wav_loop(aw8697, 0x01, 0x01);
+		aw8697_haptic_set_wav_loop(aw8697, 0x01， 0x01);
 		mutex_unlock(&aw8697->lock);
 
 		aw8697->state = 1;
@@ -3446,7 +3446,7 @@ static int aw8697_read_chipid(struct aw8697 *aw8697)
 			aw8697->chipid = AW8697_CHIPID;
 			aw8697_haptic_softreset(aw8697);
 			return 0;
-		default:
+		默认:
 			pr_info("%s unsupported device revision (0x%x)\n",
 				__func__, reg);
 			break;
@@ -3792,7 +3792,7 @@ static ssize_t aw8697_loop_show(struct device *dev,
 				  aw8697->loop[i * 2 + 0]);
 		count +=
 		    snprintf(buf + count, PAGE_SIZE - count,
-			     "seq%d loop: 0x%02x\n", i * 2 + 2,
+			     "seq%d loop: 0x%02x\n", i * 2 + 2，
 			     aw8697->loop[i * 2 + 1]);
 	}
 	return count;
