@@ -1,0 +1,50 @@
+make[1]: 进入目录“/home/wjy1214/Desktop/android_kernel_xiaomi_sm8150_56/out”
+  CHK     include/config/kernel.release
+  GEN     ./Makefile
+  CHK     include/generated/uapi/linux/version.h
+  Using .. as source for kernel
+  CHK     include/generated/utsrelease.h
+  CHK     scripts/mod/devicetable-offsets.h
+  CHK     include/generated/timeconst.h
+  CHK     include/generated/bounds.h
+  CHK     include/generated/asm-offsets.h
+  CALL    ../scripts/checksyscalls.sh
+  CHK     include/generated/compile.h
+  CC      drivers/char/rdbg.o
+  CHK     kernel/config_data.h
+  CC      drivers/clocksource/timer-of.o
+  CHK     kernel/kheaders_data.tar.xz
+  CC      drivers/clocksource/timer-probe.o
+  CC      drivers/clocksource/arm_arch_timer.o
+  CC      drivers/clocksource/dummy_timer.o
+../drivers/char/rdbg.c:139:4: error: positional initialization of field in ‘struct’ declared with ‘designated_init’ attribute [-Werror=designated-init]
+  139 |  { {0} },
+      |    ^
+../drivers/char/rdbg.c:139:4: note: (near initialization for ‘g_rdbg_instance.cdev’)
+cc1: some warnings being treated as errors
+make[3]: *** [../scripts/Makefile.build:364：drivers/char/rdbg.o] 错误 1
+make[2]: *** [../scripts/Makefile.build:679：drivers/char] 错误 2
+make[2]: *** 正在等待未完成的任务....
+  GEN     lib/crc32table.h
+  CC      lib/textsearch.o
+  CC      lib/zstd/common/entropy_common.o
+  CC      lib/ts_kmp.o
+In file included from ../lib/zstd/common/entropy_common.c:20:
+../lib/zstd/common/mem.h:19:10: fatal error: linux/unaligned.h: 没有那个文件或目录
+   19 | #include <linux/unaligned.h>  /* get_unaligned, put_unaligned* */
+      |          ^~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[3]: *** [../scripts/Makefile.build:364：lib/zstd/common/entropy_common.o] 错误 1
+make[2]: *** [../scripts/Makefile.build:679：lib/zstd] 错误 2
+make[2]: *** 正在等待未完成的任务....
+  AR      drivers/clocksource/built-in.o
+make[1]: *** [/home/wjy1214/Desktop/android_kernel_xiaomi_sm8150_56/Makefile:1232：drivers] 错误 2
+make[1]: *** 正在等待未完成的任务....
+  DTC     arch/arm64/boot/dts/qcom/sm8150.dtb
+  DTC     arch/arm64/boot/dts/qcom/sm8150-v2.dtb
+  DTC     arch/arm64/boot/dts/qcom/sm8150p.dtb
+  DTC     arch/arm64/boot/dts/qcom/sm8150p-v2.dtb
+make[1]: *** [/home/wjy1214/Desktop/android_kernel_xiaomi_sm8150_56/Makefile:1232：lib] 错误 2
+  DTC     arch/arm64/boot/dts/qcom/crux-sm8150-overlay.dtbo
+make[1]: 离开目录“/home/wjy1214/Desktop/android_kernel_xiaomi_sm8150_56/out”
+make: *** [Makefile:153：sub-make] 错误 2

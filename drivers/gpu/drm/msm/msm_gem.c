@@ -1014,7 +1014,7 @@ void msm_gem_free_object(struct drm_gem_object *obj)
 	put_iova(obj);
 	if (msm_obj->aspace) {
 		mutex_lock(&msm_obj->aspace->list_lock);
-		msm_gem_remove_obj_from_aspace_active_list(msm_obj->aspace，
+		msm_gem_remove_obj_from_aspace_active_list(msm_obj->aspace,
 				obj);
 		mutex_unlock(&msm_obj->aspace->list_lock);
 	}
@@ -1078,7 +1078,7 @@ static int msm_gem_new_impl(struct drm_device *dev,
 	case MSM_BO_CACHED:
 	case MSM_BO_WC:
 		break;
-	默认:
+	default:
 		dev_err(dev->dev, "invalid cache flag: %x\n",
 				(flags & MSM_BO_CACHE_MASK));
 		return -EINVAL;
