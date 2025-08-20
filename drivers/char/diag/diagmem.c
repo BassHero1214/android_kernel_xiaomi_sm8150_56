@@ -29,10 +29,10 @@
 struct diag_mempool_t diag_mempools[NUM_MEMORY_POOLS] = {
 	{
 		.id = POOL_TYPE_COPY,
-		.name = "POOL_COPY"，
-		.pool = NULL，
-		.itemsize = 0，
-		.poolsize = 0，
+		.name = "POOL_COPY",
+		.pool = NULL,
+		.itemsize = 0,
+		.poolsize = 0,
 		.count = 0
 	},
 	{
