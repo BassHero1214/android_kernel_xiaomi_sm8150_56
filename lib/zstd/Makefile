@@ -1,18 +1,17 @@
-obj-$(CONFIG_ZSTD_COMPRESS) += zstd_compress.o
-obj-$(CONFIG_ZSTD_DECOMPRESS) += zstd_decompress.o
+# Auto-generated Makefile for ZSTD in Android 4.14 kernel
 
-ccflags-y += -O3
+# common/
+obj-y += common/entropy_common.o
+obj-y += common/error_private.o
+obj-y += common/fse_decompress.o
+obj-y += common/zstd_common.o
 
-# Object files unique to zstd_compress and zstd_decompress
-zstd_compress-y := fse_compress.o huf_compress.o compress.o
-zstd_decompress-y := huf_decompress.o decompress.o
+# compress/
+obj-y += compress/zstd_compress.o
+obj-y += compress/fse_compress.o
+obj-y += compress/huf_compress.o
+obj-y += compress/zstd_opt.o
 
-# These object files are shared between the modules.
-# Always add them to zstd_compress.
-# Unless both zstd_compress and zstd_decompress are built in
-# then also add them to zstd_decompress.
-zstd_compress-y += entropy_common.o fse_decompress.o zstd_common.o
-
-ifneq ($(CONFIG_ZSTD_COMPRESS)$(CONFIG_ZSTD_DECOMPRESS),yy)
-	zstd_decompress-y += entropy_common.o fse_decompress.o zstd_common.o
-endif
+# decompress/
+obj-y += decompress/zstd_decompress.o
+obj-y += decompress/huf_decompress.o
