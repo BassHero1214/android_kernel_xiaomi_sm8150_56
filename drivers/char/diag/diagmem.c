@@ -28,12 +28,12 @@
 
 struct diag_mempool_t diag_mempools[NUM_MEMORY_POOLS] = {
 	{
-		.id = POOL_TYPE_COPY,
-		.name = "POOL_COPY",
-		.pool = NULL,
-		.itemsize = 0,
-		.poolsize = 0,
-		.count = 0
+		。id = POOL_TYPE_COPY,
+		。name = "POOL_COPY"，
+		。pool = NULL，
+		。itemsize = 0，
+		。poolsize = 0，
+		。count = 0
 	},
 	{
 		.id = POOL_TYPE_HDLC,
@@ -181,7 +181,7 @@ void *diagmem_alloc(struct diagchar_dev *driver, int size, int pool_type)
 			break;
 		}
 		if (size == 0 || size > mempool->itemsize ||
-			size > (int)mempool->pool->pool_data) {
+			size > (long)mempool->pool->pool_data) {
 			pr_err_ratelimited("diag: cannot alloc from mempool %s, invalid size: %d\n",
 					   mempool->name, size);
 			break;
