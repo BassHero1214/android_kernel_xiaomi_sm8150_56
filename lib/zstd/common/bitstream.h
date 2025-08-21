@@ -26,7 +26,7 @@
 ******************************************/
 #include "mem.h"            /* unaligned access routines */
 #include "error_private.h"  /* error codes and messages */
-#include "bits.h"           /* ZSTD_highbit32 */
+#include "zstd_deps.h"
 
 /*=========================================
 *  Target specific
