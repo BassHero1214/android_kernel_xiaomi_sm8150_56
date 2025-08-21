@@ -66,6 +66,7 @@ static inline unsigned ZSTD_countTrailingZeros32(unsigned val) {
 #define assert(expr) BUILD_BUG_ON(!(expr))
 #endif
 
+/*=== 新增缺失宏 ===*/
 #ifndef ZSTD_FALLTHROUGH
 #  if defined(__clang__) || (defined(__GNUC__) && __GNUC__ >= 7)
 #    define ZSTD_FALLTHROUGH __attribute__ ((fallthrough));
@@ -76,6 +77,18 @@ static inline unsigned ZSTD_countTrailingZeros32(unsigned val) {
 
 #ifndef UNLIKELY
 #  define UNLIKELY(x) (__builtin_expect(!!(x), 0))
+#endif
+
+#ifndef LIKELY
+#  define LIKELY(x)   (__builtin_expect(!!(x), 1))
+#endif
+
+#ifndef ZSTD_memcpy
+#  define ZSTD_memcpy(dst, src, size) memcpy((dst), (src), (size))
+#endif
+
+#ifndef DYNAMIC_BMI2
+#  define DYNAMIC_BMI2 0
 #endif
 
 #endif /* ZSTD_DEPS_H */
