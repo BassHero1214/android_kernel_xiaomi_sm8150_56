@@ -1,3 +1,6 @@
+#ifndef UNUSED_ATTR
+#define UNUSED_ATTR __attribute__((unused))
+#endif
 #ifndef ZSTD_DEPS_H
 #define ZSTD_DEPS_H
 #include <linux/kernel.h>
@@ -36,7 +39,21 @@
 #ifndef INLINE_KEYWORD
 #define INLINE_KEYWORD static inline
 #endif
-
+#ifndef FORCE_INLINE_TEMPLATE
+#define FORCE_INLINE_TEMPLATE static inline
+#endif
+#ifndef ZSTD_HIGHBIT32_DEFINED
+#define ZSTD_HIGHBIT32_DEFINED
 static inline unsigned ZSTD_highbit32(unsigned val) {
     return 31 - __builtin_clz(val);
 }
+#endif
+
+static inline unsigned ZSTD_countTrailingZeros32(unsigned val) {
+    return __builtin_ctz(val);
+}
+#ifndef assert
+#define assert(expr) BUILD_BUG_ON(!(expr))
+#endif
+
+#endif /* ZSTD_DEPS_H */
