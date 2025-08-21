@@ -435,3 +435,11 @@ MEM_STATIC unsigned BIT_endOfDStream(const BIT_DStream_t* DStream)
 }
 
 #endif /* BITSTREAM_H_MODULE */
+
+#ifndef ZSTD_FALLTHROUGH
+#  if defined(__clang__) || (defined(__GNUC__) && __GNUC__ >= 7)
+#    define ZSTD_FALLTHROUGH __attribute__ ((fallthrough));
+#  else
+#    define ZSTD_FALLTHROUGH  /* fallthrough */
+#  endif
+#endif
