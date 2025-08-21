@@ -443,3 +443,7 @@ MEM_STATIC unsigned BIT_endOfDStream(const BIT_DStream_t* DStream)
 #    define ZSTD_FALLTHROUGH  /* fallthrough */
 #  endif
 #endif
+
+#ifndef UNLIKELY
+#  define UNLIKELY(x) (__builtin_expect(!!(x), 0))
+#endif
