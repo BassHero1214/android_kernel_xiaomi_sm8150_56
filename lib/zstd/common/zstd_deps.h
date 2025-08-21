@@ -33,3 +33,6 @@
 #endif
 #define ZSTD_MULTITHREAD      0
 #endif
+#ifndef INLINE_KEYWORD
+#define INLINE_KEYWORD static inline
+#endif
