@@ -1294,6 +1294,7 @@ struct drm_gem_object *msm_gem_import(struct drm_device *dev,
 	ret = dma_buf_get_flags(dmabuf, &flags);
 	if (ret) {
 		DRM_ERROR("dma_buf_get_flags failure, err=%d\n", ret);
+        goto fail;
 	} else if ((flags & ION_FLAG_CACHED) == 0) {
 		DRM_DEBUG("Buffer is uncached type\n");
 		msm_obj->flags |= MSM_BO_SKIPSYNC;
@@ -1304,6 +1305,7 @@ struct drm_gem_object *msm_gem_import(struct drm_device *dev,
 
 fail:
 	drm_gem_object_unreference_unlocked(obj);
+
 	return ERR_PTR(ret);
 }
 
