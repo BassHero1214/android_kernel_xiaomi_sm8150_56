@@ -66,4 +66,12 @@ static inline unsigned ZSTD_countTrailingZeros32(unsigned val) {
 #define assert(expr) BUILD_BUG_ON(!(expr))
 #endif
 
+#ifndef ZSTD_FALLTHROUGH
+#  if defined(__clang__) || (defined(__GNUC__) && __GNUC__ >= 7)
+#    define ZSTD_FALLTHROUGH __attribute__ ((fallthrough));
+#  else
+#    define ZSTD_FALLTHROUGH /* fallthrough */
+#  endif
+#endif
+
 #endif /* ZSTD_DEPS_H */
