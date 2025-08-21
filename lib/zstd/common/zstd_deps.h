@@ -36,3 +36,7 @@
 #ifndef INLINE_KEYWORD
 #define INLINE_KEYWORD static inline
 #endif
+
+static inline unsigned ZSTD_highbit32(unsigned val) {
+    return 31 - __builtin_clz(val);
+}
