@@ -4848,14 +4848,14 @@ static struct of_device_id aw8697_dt_match[] = {
 };
 
 static struct i2c_driver aw8697_i2c_driver = {
-	。driver = {
-		   。name = AW8697_I2C_NAME,
-		   。owner = THIS_MODULE,
-		   。of_match_table = of_match_ptr(aw8697_dt_match),
+	.driver = {
+		   .name = AW8697_I2C_NAME,
+		   .owner = THIS_MODULE,
+		   .of_match_table = of_match_ptr(aw8697_dt_match),
 		   },
-	。probe = aw8697_i2c_probe,
-	。remove = aw8697_i2c_remove,
-	。id_table = aw8697_i2c_id,
+	.probe = aw8697_i2c_probe,
+	.remove = aw8697_i2c_remove,
+	.id_table = aw8697_i2c_id,
 };
 
 static int __init aw8697_i2c_init(void)
