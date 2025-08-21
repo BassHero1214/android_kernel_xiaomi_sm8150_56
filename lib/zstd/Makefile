@@ -1,5 +1,4 @@
 # SPDX-License-Identifier: GPL-2.0
-CFLAGS_MODULE := $(filter-out -mlittle-endian,$(CFLAGS_MODULE))
 ccflags-y += -I$(src)/common
 
 # 公共
