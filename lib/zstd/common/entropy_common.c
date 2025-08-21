@@ -22,7 +22,7 @@
 #define FSE_STATIC_LINKING_ONLY  /* FSE_MIN_TABLELOG */
 #include "fse.h"
 #include "huf.h"
-#include "bits.h"                /* ZSDT_highbit32, ZSTD_countTrailingZeros32 */
+#include "zstd_deps.h"                /* ZSDT_highbit32, ZSTD_countTrailingZeros32 */
 
 
 /*===   Version   ===*/
