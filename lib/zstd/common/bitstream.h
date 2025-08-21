@@ -24,9 +24,10 @@
 /*-****************************************
 *  Dependencies
 ******************************************/
+
+#include "zstd_deps.h"
 #include "mem.h"            /* unaligned access routines */
 #include "error_private.h"  /* error codes and messages */
-#include "zstd_deps.h"
 
 /*=========================================
 *  Target specific
