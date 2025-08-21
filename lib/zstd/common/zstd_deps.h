@@ -74,4 +74,8 @@ static inline unsigned ZSTD_countTrailingZeros32(unsigned val) {
 #  endif
 #endif
 
+#ifndef UNLIKELY
+#  define UNLIKELY(x) (__builtin_expect(!!(x), 0))
+#endif
+
 #endif /* ZSTD_DEPS_H */
