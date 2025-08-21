@@ -1121,68 +1121,71 @@ static int msm_gem_new_impl(struct drm_device *dev,
 }
 
 static struct drm_gem_object *_msm_gem_new(struct drm_device *dev,
-		uint32_t size, uint32_t flags, bool struct_mutex_locked)
+        uint32_t size, uint32_t flags, bool struct_mutex_locked)
 {
-	struct msm_drm_private *priv = dev->dev_private;
-	struct drm_gem_object *obj = NULL;
-	struct msm_gem_object *msm_obj; 
-	bool use_vram = false;
-	int ret;
+    struct msm_drm_private *priv = dev->dev_private;
+    struct drm_gem_object *obj = NULL;
+    struct msm_gem_object *msm_obj;
+    bool use_vram = false;
+    int ret;
 
-	size = PAGE_ALIGN(size);
+    size = PAGE_ALIGN(size);
 
-	if (!iommu_present(&platform_bus_type))
-		use_vram = true;
-	else if ((flags & MSM_BO_STOLEN) && priv->vram.size)
-		use_vram = true;
+    if (!iommu_present(&platform_bus_type))
+        use_vram = true;
+    else if ((flags & MSM_BO_STOLEN) && priv->vram.size)
+        use_vram = true;
 
-	if (WARN_ON(use_vram && !priv->vram.size))
-		return ERR_PTR(-EINVAL);
+    if (WARN_ON(use_vram && !priv->vram.size))
+        return ERR_PTR(-EINVAL);
 
-	/* Disallow zero sized objects as they make the underlying
-	 * infrastructure grumpy
-	 */
-	if (size == 0)
-		return ERR_PTR(-EINVAL);
+    /* Disallow zero sized objects as they make the underlying
+     * infrastructure grumpy
+     */
+    if (size == 0)
+        return ERR_PTR(-EINVAL);
 
-	ret = msm_gem_new_impl(dev, size, flags, NULL, &obj, struct_mutex_locked);
-	if (ret)
-		return ERR_PTR(ret);
+    ret = msm_gem_new_impl(dev, size, flags, NULL, &obj, struct_mutex_locked);
+    if (ret)
+        return ERR_PTR(ret);
 
-	if (use_vram) {
-		struct msm_gem_vma *vma;
-		struct page **pages;
-		struct msm_gem_object *msm_obj = to_msm_bo(obj);
-		struct msm_obj *obj = to_msm_bo(obj);
+    if (use_vram) {
+        struct msm_gem_vma *vma;
+        struct page **pages;
 
-		mutex_lock(&msm_obj->lock);
+        msm_obj = to_msm_bo(obj); // 使用合适的变量名，避免重复定义
+        mutex_lock(&msm_obj->lock);
 
-		vma = add_vma(obj, NULL);
-		mutex_unlock(&msm_obj->lock);
-		if (IS_ERR(vma)) {
-			ret = PTR_ERR(vma);
-			goto fail;
-		}
+        vma = add_vma(obj, NULL);
+        mutex_unlock(&msm_obj->lock);
+        if (IS_ERR(vma)) {
+            ret = PTR_ERR(vma);
+            goto fail;
+        }
 
-		to_msm_bo(obj)->vram_node = &vma->node;
+        msm_obj->vram_node = &vma->node;
 
-		drm_gem_private_object_init(dev, obj, size);
+        drm_gem_private_object_init(dev, obj, size);
 
-		pages = get_pages(obj);
-		if (IS_ERR(pages)) {
-			ret = PTR_ERR(pages);
-			goto fail;
-		}
+        pages = get_pages(obj);
+        if (IS_ERR(pages)) {
+            ret = PTR_ERR(pages);
+            goto fail;
+        }
 
-		vma->iova = physaddr(obj);
-	} else {
-		ret = drm_gem_object_init(dev, obj, size);
-		if (ret)
-			goto fail;
-	}
+        vma->iova = physaddr(obj);
+    } else {
+        ret = drm_gem_object_init(dev, obj, size);
+        if (ret)
+            goto fail;
+    }
 
-		mutex_unlock(&msm_obj->lock);
-	return obj;
+    mutex_unlock(&msm_obj->lock);
+    return obj;
+
+fail:
+    mutex_unlock(&msm_obj->lock);  // 确保在失败时解锁
+    return ERR_PTR(ret);
 }
 
 struct drm_gem_object *msm_gem_new_locked(struct drm_device *dev,
