@@ -1153,7 +1153,7 @@ static struct drm_gem_object *_msm_gem_new(struct drm_device *dev,
 		struct msm_gem_vma *vma;
 		struct page **pages;
 		struct msm_gem_object *msm_obj = to_msm_bo(obj);
-		struct msm_obj = to_msm_bo(obj);
+		struct msm_obj *obj = to_msm_bo(obj);
 
 		mutex_lock(&msm_obj->lock);
 
