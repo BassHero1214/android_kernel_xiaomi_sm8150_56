@@ -29,8 +29,6 @@
 #include "../common/fse.h"        /* header compression */
 #include "../common/huf.h"
 #include "../common/error_private.h"
-#include "../common/bits.h"       /* ZSTD_highbit32 */
-
 
 /* **************************************************************
 *  Error Management

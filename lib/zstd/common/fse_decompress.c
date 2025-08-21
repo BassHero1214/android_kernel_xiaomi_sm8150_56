@@ -22,7 +22,6 @@
 #include "fse.h"
 #include "error_private.h"
 #include "zstd_deps.h"  /* ZSTD_memcpy */
-#include "bits.h"       /* ZSTD_highbit32 */
 
 
 /* **************************************************************

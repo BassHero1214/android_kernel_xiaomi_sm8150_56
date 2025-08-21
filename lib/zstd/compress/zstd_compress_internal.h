@@ -21,7 +21,6 @@
 ***************************************/
 #include "../common/zstd_internal.h"
 #include "zstd_cwksp.h"
-#include "../common/bits.h" /* ZSTD_highbit32, ZSTD_NbCommonBytes */
 #include "zstd_preSplit.h" /* ZSTD_SLIPBLOCK_WORKSPACESIZE */
 
 /*-*************************************

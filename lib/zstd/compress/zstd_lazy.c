@@ -12,7 +12,6 @@
 
 #include "zstd_compress_internal.h"
 #include "zstd_lazy.h"
-#include "../common/bits.h" /* ZSTD_countTrailingZeros64 */
 
 #if !defined(ZSTD_EXCLUDE_GREEDY_BLOCK_COMPRESSOR) \
  || !defined(ZSTD_EXCLUDE_LAZY_BLOCK_COMPRESSOR) \

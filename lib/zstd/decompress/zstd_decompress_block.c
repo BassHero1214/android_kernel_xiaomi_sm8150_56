@@ -26,7 +26,6 @@
 #include "zstd_decompress_internal.h"   /* ZSTD_DCtx */
 #include "zstd_ddict.h"  /* ZSTD_DDictDictContent */
 #include "zstd_decompress_block.h"
-#include "../common/bits.h"  /* ZSTD_highbit32 */
 
 /*_*******************************************************
 *  Macros
