@@ -49,6 +49,17 @@ int ZSTD_maxCLevel(void);
  */
 size_t ZSTD_compressBound(size_t srcSize);
 
+/**
+ * ZSTD_isError() - tells if a size_t function result is an error code
+ * @code:  The function result to check for error.
+ *
+ * Return: Non-zero iff the code is an error.
+ *
+ * Note: Only declare, do not define it here! The actual implementation is provided
+ *       by zstd source files.
+ */
+unsigned int ZSTD_isError(size_t code);
+
 /*--- Zstd types and API declarations ---*/
 
 typedef struct ZSTD_CCtx_s ZSTD_CCtx;
