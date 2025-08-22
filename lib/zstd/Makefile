@@ -1,11 +1,8 @@
-# SPDX-License-Identifier: GPL-2.0
-ccflags-y += -I$(src)/common
+ccflags-y += -I$(src)/common -I$(src)/compress -I$(src)/decompress
 
-# 公共
-lib-y += common/entropy_common.o common/error_private.o common/fse_decompress.o common/zstd_common.o
+obj-y += common/entropy_common.o common/error_private.o common/fse_decompress.o common/zstd_common.o
 
-# 压缩
-lib-$(CONFIG_ZSTD_COMPRESS) += compress/fse_compress.o \
+obj-$(CONFIG_ZSTD_COMPRESS) += compress/fse_compress.o \
                                compress/huf_compress.o \
                                compress/zstd_compress.o \
                                compress/zstd_compress_literals.o \
@@ -17,11 +14,11 @@ lib-$(CONFIG_ZSTD_COMPRESS) += compress/fse_compress.o \
                                compress/zstd_ldm.o \
                                compress/zstd_opt.o \
                                compress/hist.o
-# 如保留预分裂优化，再加上：
-# lib-$(CONFIG_ZSTD_COMPRESS) += compress/zstd_preSplit.o
 
-# 解压
-lib-$(CONFIG_ZSTD_DECOMPRESS) += decompress/huf_decompress.o \
+# 如保留预分裂优化，再加上
+# obj-$(CONFIG_ZSTD_COMPRESS) += compress/zstd_preSplit.o
+
+obj-$(CONFIG_ZSTD_DECOMPRESS) += decompress/huf_decompress.o \
                                  decompress/zstd_ddict.o \
                                  decompress/zstd_decompress.o \
                                  decompress/zstd_decompress_block.o
