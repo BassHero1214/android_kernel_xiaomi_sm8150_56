@@ -20,7 +20,6 @@
 /*-*************************************
 *  Dependencies
 ***************************************/
-#include "cpu.h"
 #include "mem.h"
 #include "error_private.h"
 #define ZSTD_STATIC_LINKING_ONLY
