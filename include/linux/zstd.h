@@ -58,19 +58,10 @@ static __attribute__((unused)) unsigned int ZSTD_isError(size_t code)
 {
 	return code > (size_t)-ZSTD_error_maxCode;
 }
-/**
- * ZSTD_getErrorCode() - translates an error function result to a ZSTD_ErrorCode
- * @functionResult: The result of a function for which ZSTD_isError() is true.
- *
- * Return:          The ZSTD_ErrorCode corresponding to the functionResult or 0
- *                  if the functionResult isn't an error.
+
+/* 
+ * Don't define ZSTD_getErrorCode here, use the one from zstd_errors.h.
+ * (Only keep the declaration, if needed, not a static definition!)
  */
-static __attribute__((unused)) ZSTD_ErrorCode ZSTD_getErrorCode(
-	size_t functionResult)
-{
-	if (!ZSTD_isError(functionResult))
-		return (ZSTD_ErrorCode)0;
-	return (ZSTD_ErrorCode)(0 - functionResult);
-}
 
 #endif  /* ZSTD_H */
