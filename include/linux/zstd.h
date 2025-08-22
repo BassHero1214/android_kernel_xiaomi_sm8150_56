@@ -48,16 +48,6 @@ int ZSTD_maxCLevel(void);
  * Return:   The maximum compressed size in the worst case scenario.
  */
 size_t ZSTD_compressBound(size_t srcSize);
-/**
- * ZSTD_isError() - tells if a size_t function result is an error code
- * @code:  The function result to check for error.
- *
- * Return: Non-zero iff the code is an error.
- */
-static __attribute__((unused)) unsigned int ZSTD_isError(size_t code)
-{
-	return code > (size_t)-ZSTD_error_maxCode;
-}
 
 /*--- Zstd types and API declarations ---*/
 
