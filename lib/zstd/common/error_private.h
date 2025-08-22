@@ -14,6 +14,10 @@
 #ifndef ERROR_H_MODULE
 #define ERROR_H_MODULE
 
+#ifndef RAWLOG
+#define RAWLOG(level, ...) /* nothing */
+#endif
+
 /* ****************************************
 *  Dependencies
 ******************************************/
