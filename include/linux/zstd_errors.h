@@ -80,6 +80,7 @@ typedef enum {
   ZSTD_error_srcBuffer_wrong     = 105,
   ZSTD_error_sequenceProducer_failed = 106,
   ZSTD_error_externalSequences_invalid = 107,
+  ZSTD_error_cannotProduce_uncompressedBlock = 108,
   ZSTD_error_maxCode = 120  /* never EVER use this value directly, it can change in future versions! Use ZSTD_isError() instead */
 } ZSTD_ErrorCode;
 
